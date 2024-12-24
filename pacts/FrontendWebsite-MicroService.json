@@ -1,0 +1,53 @@
+{
+  "consumer": {
+    "name": "FrontendWebsite"
+  },
+  "interactions": [
+    {
+      "description": "get all ACB's",
+      "providerState": "ACB exist",
+      "request": {
+        "method": "POST",
+        "path": "/AuditsV2/AccreditationBodiesList"
+      },
+      "response": {
+        "body": [
+          [
+            {
+              "address": "Lieven de Keystraat 113 ,something ,Rotterdam ,3067KH",
+              "code": "VC",
+              "country": "Netherlands",
+              "name": "Kittu",
+              "website": "erwinab.nl"
+            }
+          ]
+        ],
+        "headers": {
+          "Content-Type": "application/json; charset=utf-8"
+        },
+        "matchingRules": {
+          "$.body": {
+            "match": "type",
+            "min": 1
+          }
+        },
+        "status": 200
+      }
+    }
+  ],
+  "metadata": {
+    "pact-js": {
+      "version": "13.1.4"
+    },
+    "pactRust": {
+      "ffi": "0.4.22",
+      "models": "1.2.3"
+    },
+    "pactSpecification": {
+      "version": "2.0.0"
+    }
+  },
+  "provider": {
+    "name": "MicroService"
+  }
+}
