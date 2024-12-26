@@ -20,7 +20,7 @@ describe("API", () => {
                 "code": "MAB",
                 "country": "Andorra",
                 "website": "",
-                "address": "s ,s ,s ,s"
+                "address": "s"
             }
         ];
         nock(API.url)
