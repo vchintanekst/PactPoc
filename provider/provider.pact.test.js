@@ -15,23 +15,21 @@ describe("Pact Verification", () => {
             logLevel: "INFO",
             providerBaseUrl: "https://staging.assurance.fssc.com/webservices",
             provider: "MicroService",
-            providerVersion: process.env.GIT_COMMIT,
-            providerVersionBranch: process.env.GIT_BRANCH,
-            consumerVersionSelectors: [{
-                latest: true
-              }],
+            providerVersion: "1.0.0",
+            providerVersionBranch: "test",
+            consumerVersionSelectors: [
+                { mainBranch: true },
+                { deployedOrReleased: true }
+              ],
             pactBrokerUrl: process.env.PACT_BROKER_URL || "https://nekst-d74b.pactflow.io",
             pactBrokerUsername: process.env.PACT_BROKER_USERNAME || "VamsiChinta",
             pactBrokerPassword: process.env.PACT_BROKER_PASSWORD || "Kittu$4691",
             requestFilter: (req, res, next) => {
                 if (!req.headers["authorization"]) {
-                    next();
-                    return;
+                    req.headers["authorization"] = `Bearer 735cdc269699f8d003c9c557b413b366`;
                 }
-                req.headers["authorization"] = `Bearer 503f22162544a82f68f68a8ff4196e80`;
                 next();
             },
-         
         };
 
         if (process.env.CI || process.env.PACT_PUBLISH_RESULTS) {
@@ -46,10 +44,16 @@ describe("Pact Verification", () => {
         //     server.close();
         // });
 
-        return new Verifier(opts).verifyProvider().then(output => {
+        return new Verifier(opts).verifyProvider()
+        .then(output => {
             console.log(output);
-        }).catch((e) => {
+        })
+        .catch((e) => {
             console.error("Pact verification failed :(", e);
+        })
+        .finally(() => {
+            // Ensure the server is closed after verification if it was started
+            // server.close();
         });
     })
 });

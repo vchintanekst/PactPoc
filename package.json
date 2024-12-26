@@ -5,7 +5,7 @@
     "react-dom": "18.3.1",
     "react-router": "6.27.0",
     "react-router-dom": "6.27.0",
-    "react-scripts": "^3.0.1",
+    "react-scripts": "^5.0.1",
     "spectre.css": "0.5.9",
     "web-vitals": "4.2.3"
   },
@@ -15,7 +15,6 @@
     "@pact-foundation/pact-cli": "16.0.4",
     "@testing-library/react": "16.0.1",
     "@testing-library/user-event": "14.5.2",
-    "babel-jest": "^29.7.0",
     "cross-env": "7.0.3",
     "eslint": "9.12.0",
     "jest": "29.7.0",
@@ -31,7 +30,7 @@
     "test:pact": "cross-env CI=true react-scripts test --testTimeout=30000 pact.spec.js",
     "test:unit": "cross-env CI=true react-scripts test api.spec.js",
     "test:provider": "jest --testTimeout 30000 --testMatch \"**/*.pact.test.js\"",
-    "test:publish": "./node_modules/.bin/pact-broker publish ./pacts --consumer-app-version=\"$(npx absolute-version)\"  --auto-detect-version-properties --broker-base-url=https://nekst-d74b.pactflow.io --broker-token=ILRexN5evRy8NTmVUeubrA"
+    "test:publish": "./node_modules/.bin/pact-broker publish ./pacts --consumer-app-version=\"1.0.0\"  --auto-detect-version-properties --broker-base-url=https://nekst-d74b.pactflow.io --broker-token=ILRexN5evRy8NTmVUeubrA"
   },
   "type": "module",
   "license": "ISC",
